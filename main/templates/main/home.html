@@ -1,0 +1,32 @@
+<html>
+<head><title>Drive</title></head>
+<body>
+<h1>
+Hello, {{request.user}}
+<a href="{% url 'logout' %}">logout</a>
+</h1>
+Add Files
+<hr>
+
+<form action = "" method = "POST" enctype = "multipart/form-data">
+{% csrf_token %}
+
+{{documentForm.as_p}}
+<button type = 'submit'>Submit</button>
+
+</form>
+
+<br><br><br>
+
+All files
+
+<hr>
+
+{% for i in data %}
+
+    <a href = "{{i.document.url}}"><p>{{i.document}}</p></a>
+{% endfor %}
+
+</body>
+
+</html>
