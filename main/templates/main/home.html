@@ -1,5 +1,7 @@
 <html>
-<head><title>Drive</title></head>
+<head>
+<title>Drive</title>
+</head>
 <body>
 <h1>
 Hello, {{request.user}}
@@ -12,7 +14,7 @@ Add Files
 {% csrf_token %}
 
 {{documentForm.as_p}}
-<button type = 'submit'>Submit</button>
+<button type = 'submit' data-action = "add">Submit</button>
 
 </form>
 
@@ -23,8 +25,10 @@ All files
 <hr>
 
 {% for i in data %}
-
-    <a href = "{{i.document.url}}"><p>{{i.document}}</p></a>
+    <p>
+    <a href = "{{i.document.url}}">{{i.document}}</a>
+    <a href = "{% url 'delete' i.id %}">delete</a>
+    </p>
 {% endfor %}
 
 </body>

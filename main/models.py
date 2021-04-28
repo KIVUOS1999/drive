@@ -8,6 +8,10 @@ class Document(models.Model):
 
 
     def __str__(self):
-        return self.user.username
+        return self.document
+
+    def delete(self, *args, **kwargs):
+        self.document.delete()
+        super().delete(*args, **kwargs)
 
 
