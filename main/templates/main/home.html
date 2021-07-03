@@ -1,36 +1,41 @@
+{% load static %}
+
 <html>
-<head>
-<title>Drive</title>
-</head>
-<body>
-<h1>
-Hello, {{request.user}}
-<a href="{% url 'logout' %}">logout</a>
-</h1>
-Add Files
-<hr>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel = 'stylesheet' href = "{% static 'css/home.css'%}"/>
+        <title>Drive</title>
+    </head>
+    <body>
 
-<form action = "" method = "POST" enctype = "multipart/form-data">
-{% csrf_token %}
+        <div class='b1'>
+            <h1>
+                Hello, {{request.user}}
+                <a href="{% url 'logout' %}" style="color:#d5ff92">logout</a>
+            </h1>
+        </div>
 
-{{documentForm.as_p}}
-<button type = 'submit' data-action = "add">Submit</button>
+        <div class='b2'>
+            <h1>Add Files</h1>
+            <form action = "" method = "POST" enctype = "multipart/form-data">
+                {% csrf_token %}
+                <h3>{{documentForm.as_p}}</h3>
+                <button class = 'btn' type = 'submit' data-action = "add"><h2 style='opacity:0.8; color:#e1f1c6bd'>Add</h2></button>
+            </form>
+        </div>
 
-</form>
+        <div>
+            <h1>All files</h1>
+            <section class = 'b3'>
+                {% for i in data %}
+                    <h3>
+                        <a href = "{{i.document.url}}" style="color:#e1f1c6bd">{{i.document}}</a> 
+                        <a href = "{% url 'delete' i.id %}" style="background-color:#ffa0a0e0; margin:2rem 2rem 0 0; border-radius:2rem; padding:0.2rem">delete</a>
+                    </h3>
+                {% endfor %}
+            </section>
+        </div>
 
-<br><br><br>
-
-All files
-
-<hr>
-
-{% for i in data %}
-    <p>
-    <a href = "{{i.document.url}}">{{i.document}}</a>
-    <a href = "{% url 'delete' i.id %}">delete</a>
-    </p>
-{% endfor %}
-
-</body>
-
+    </body>
 </html>

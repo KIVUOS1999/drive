@@ -1,17 +1,56 @@
-<h1>Register</h1>
+{% load static %}
 
-<form method = 'POST'>
-    {% csrf_token %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel = 'stylesheet' href = "{% static 'css/header.css'%}"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,700&display=swap" rel="stylesheet">
+        <title>Register</title>
+    </head>
+    <body>
+        <main>
+            <div class = 'glass'>
+                <div class = 'dashboard'>
+                    <div class = 'logo'>
+                        <h3>KDrive</h3>
+                        <p>Something beautiful</p>
+                    </div>
+                    <div class = 'action'>
+                        <div class = 'links'>
+                            <h2><a href = "{% url 'login' %}">Login</a></h2>
+                        </div>
+                        <div class = 'links'>
+                            <h2><a href = "{% url 'register' %}">Register</a></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class = 'form'>
+                    <div class = 'status'>
+                        <h1>Register</h1>
+                    </div>
+                    <div class = 'cards'>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% for fields in form %}
+                                <div class="card">
+                                    <h4>{{fields.label}}</h4>
+                                    <p>{{fields}}</p>
+                                </div>
+                            {% endfor %}
+                            <div class = 'card'><input type="submit" value="Create Account" class = 'btn'></div>
+                            <!--<p>
+                                If you donot have account <a href = "{% url 'register' %}">register</a>
+                            </p>--> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class = 'circle1'></div>
+        <div class = 'circle2'></div>
+    </body>
 
-    {% for fields in form %}
-        {{fields.label}}
-        {{fields}}
-        <br>
-    {% endfor %}
-
-    <input type='submit' name='Create'></input>
-
-    <p>
-    If you have account <a href = "{% url 'login' %}">login</a>
-    </p>
-</form>
+</html>

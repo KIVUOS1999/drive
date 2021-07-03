@@ -1,7 +1,21 @@
-<p>Are you sure you want to delete item</p>
-
-<form action = "{% url 'delete' doc.id %}" method = "POST">
-    {% csrf_token %}
-    <a href = "{% url 'home' %}">Cancel</a><br>
-    <input type = "submit" name = "confirm">
-</form>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel = 'stylesheet' href = "{% static 'css/header.css'%}"/>
+        <title>Delete</title>
+    </head>
+    <body>
+        <main style='display : block; align-items: center; justify-content: center;'>
+            <h1>Are you sure you want to delete item</h1>
+            <div>
+                <form action = "{% url 'delete' doc.id %}" method = "POST">
+                    {% csrf_token %}
+                    <h2 style=" margin: 2rem 0 2rem 0;text-align:center;background: linear-gradient(to right bottom,rgba(4, 255, 108, 0.7), rgba(218, 255, 6, 0.2)); padding:1rem; width:50%; border-radius:2rem; "><a href = "{% url 'home' %}">NO</a></h2>
+                    <h2><input type = "submit" name = "confirm" value = "YES" style="background: linear-gradient(to right bottom, rgba(255, 0, 0, 1), rgba(255, 226, 226, 0.418)); border:none; padding:1rem; width:50%; border-radius:2rem;"></h2>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>
